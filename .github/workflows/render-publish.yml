@@ -1,0 +1,12 @@
+- name: Render Book project
+  uses: quarto-dev/quarto-actions/render@v2
+  with:
+    to: html
+    path: '_site/'
+
+- name: Publish HTML book
+    uses: quarto-dev/quarto-actions/publish@v2
+  with:
+    target: gh-pages
+    path: '_site/'
+    render: false
