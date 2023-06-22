@@ -1,0 +1,15 @@
+---
+title: "Blog"
+listing:
+  contents:
+  - "blog/*.qmd"
+  type: grid
+  sort: "date desc"
+  categories: numbered
+---
+
+::: topbr
+```{=html}
+<p style = "font-size: 18px">I will be writing about selfhosting, fixing stuff, parenting, and maybe a little about work.</p>
+```
+:::
