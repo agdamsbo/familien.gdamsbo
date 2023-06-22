@@ -1,5 +1,9 @@
 project:
   type: website
+  output-dir: docs
+
+resources:
+  - CNAME
 
 website:
   title: "Familien G Damsbo"
@@ -7,13 +11,23 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: food.qmd
+        text: Opskrifter
+      - href: blog.qmd
+        text: Blog
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    code-fold: true
+    code-overflow: wrap
+    theme: 
+      dark: solar
+      light: lumen
+    # css: styles.css
     toc: true
+    link-external-newwindow: true
+    link-external-icon: false
+    # include-in-header: umami.html
 
 editor: visual
 

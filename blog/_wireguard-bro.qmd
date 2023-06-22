@@ -9,19 +9,21 @@ categories:
   - VPS
   - VPN
 ---
+
 Vi bor til leje og har en hjemmeserver stående på kontoret. Serveren hoster bl.a. denne side. For at undgå indstillinger lokalt på routeren stillet til rådighed af vores udlejer har jeg lejet den mindste VPS hos Hetzner, og bruger denne som bro med Wireguard til hjemmeserveren. Der findes et væld af opsætningsvejledninger og uddybende forklaringer af hver af de introducerede begreber. Her kommer min opsætning til inspiration.
 
 ## Noter
-Inspirationen kommer fra følgende sider, som jeg kun kan anbefale også at læse (jeg har dog intet med disse sider at gøre):    
 
-* [wiki.r-selfhosted.com](https://wiki.r-selfhosted.com/guides/virtual-private-networks/wireguard/)    
-* [www.procustodibus.com](https://www.procustodibus.com/blog/2022/09/wireguard-port-forward-from-internet/)    
-    
+Inspirationen kommer fra følgende sider, som jeg kun kan anbefale også at læse (jeg har dog intet med disse sider at gøre):
+
+-   [wiki.r-selfhosted.com](https://wiki.r-selfhosted.com/guides/virtual-private-networks/wireguard/)\
+-   [www.procustodibus.com](https://www.procustodibus.com/blog/2022/09/wireguard-port-forward-from-internet/)
 
 ## Eksempler på konfigurationsfiler
 
 ### Hetzner VPS
-```
+
+```         
 [Interface]
 Address = 10.25.4.3/32,fd42::1/128
 PrivateKey = [Privat nøgle for VPS]
@@ -44,7 +46,8 @@ PersistentKeepalive = 25
 ```
 
 ### Hjemmeserver
-```
+
+```         
 [Interface]
 Address = 10.25.4.1/24
 ListenPort = [Wireguard port nummer]

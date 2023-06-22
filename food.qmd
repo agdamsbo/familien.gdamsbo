@@ -3,16 +3,16 @@ title: "Recepies"
 listing:
   contents:
   - "food/*.qmd"
-  type: grid
+  type: default
   sort: "date desc"
   categories: numbered
 ---
 
 ::: topbr
-```{=html}
-<p style = "font-size: 18px">I like cooking and baking, and especially with my girls. This is a collection of our favorite recepies for our own reference. You are welcome to use them as well.</p>
-```
-```{=html}
-<p style = "font-size: 18px">This is not intended as a showroom. Some recepies are original and some are not. I will try to link to sources when available. I keep this as my own library.</p>
-```
+
+Vi er glade for at lave mad, og vi øver os i at have børnene med.
+
+Her deler vi nogle af vores yndlingsopskrifter. Så kan vi selv finde dem, og de kan deles.
+
+Nogle opskrifter er originale, andre er meget inspireret og andre igen kopieret direkte fra andre sider. Vi refererer efter bedste evne.
 :::
