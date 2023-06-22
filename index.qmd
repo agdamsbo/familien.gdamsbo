@@ -1,5 +1,9 @@
 ---
 title: "Familien G Damsbo"
+about:
+  template: trestles
 ---
 
-Velkommen til vores familieside
+Hej! Velkommen til vores familieside.
+
+Til en start er her bare lidt opskrifter og en rejsedagbog.
