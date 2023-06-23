@@ -9,7 +9,5 @@ listing:
 ---
 
 ::: topbr
-```{=html}
-<p style = "font-size: 18px">I will be writing about selfhosting, fixing stuff, parenting, and maybe a little about work.</p>
-```
+Her handler det om alle mulige familieprojekter. Det kommer nok til at lugte lidt af kode og IT også.
 :::
