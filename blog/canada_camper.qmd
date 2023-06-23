@@ -2,8 +2,111 @@
 title: Canada i camper
 date: 2023-06-22
 description: Lidt om vores campertur.
+author: Andreas
+image: "images/canada_map.png"
 categories:
   - Canada
   - Rejse
   - Børn
+  - R
 ---
+
+# Kode
+
+```{r}
+#| code-summary: Kode til oversigtskort
+
+# Original export from plotting in OsmAnd on phone
+# bookmarks <- gpx::read_gpx(file = "data/favorites_canada_2023.gpx")
+
+# Udtræk til .csv, herefter manuelt tilpasset, sorteret og tilføjet yderligere data.
+# write.csv(bookmarks$waypoints,"data/camper_points.csv")
+
+library(dplyr)
+
+camper <- read.csv("data/camper_points.csv",)[-1] |> arrange(Order)
+
+# Alternative source from RVParky export
+# RVParky er fed, men fornyligt er det blevet en betalingstjeneste. Hvorfor er den ikke integreret i OSM?
+# vnc <- gpx::read_gpx(file = "data/vancouver-trip.gpx")
+
+## Iconer
+matching <- c(car="images/key.png", 
+              bed="images/rv.png", 
+              house="images/house.png")
+
+library(leaflet)
+
+icons_list <- icons(
+  iconUrl = matching[match(camper$Icon,names(matching))],
+  iconWidth = c(40),
+  iconHeight = c(40)
+)
+
+## Så er det tid til at bruge Open Street Routing Machine
+
+library(osrm)
+
+# osrmTable(loc = camper |> transmute(lon=Longitude,lat=Latitude))
+
+trips <- osrmTrip(loc = camper |> transmute(lon=Longitude,lat=Latitude), overview = "full",
+                   osrm.profile = "car")
+trip <- trips[[1]]$trip
+
+# There exists a lua filter for truck, put I can't figure how to implement.
+# I suppose I would have to run a local OSRM instance...
+
+## HTML labels til kortet
+
+invisible(Sys.setlocale("LC_TIME", "da_DK"))
+
+content <- paste0(
+  ifelse(substr(camper$Description,1,4)!="http"|is.na(camper$Description),paste0("<br/>",camper$Name),paste0("<b><a href='",camper$Description,"'>",camper$Name,"</a></b>")),
+  "<br/>",paste("Ankomst:",tolower(format(as.Date(camper$Arrival),"%d. %B"))),
+  "<br/>",paste("Nætter:",camper$Nights),
+  "<br/>",paste("Tid til næste:",round(trips[[1]]$trip$duration,1),"min"),
+  "<br/>",paste("Afstand til næste:",round(trips[[1]]$trip$distance,1),"km"),
+  ifelse(camper$Notes!="",paste0("<br/>",paste("Noter:",camper$Notes)),"")
+)
+
+## Interaktivt kort med `leaflet`
+
+map <- leaflet(trip) %>%
+  addTiles(group = "OSM (standard)") %>%
+  addProviderTiles(providers$OpenTopoMap,
+                   group = "Topografisk") %>%
+  # addProviderTiles(providers$HERE.satelliteDay,
+  #                  group = "Satelit") %>%
+  setView(lng = median(camper$Longitude), lat = median(camper$Latitude), zoom = 7) %>%
+  addPolylines() %>%
+  addMarkers(data = camper[-nrow(camper),],
+             icon = icons_list,
+             popup = content[-nrow(camper)], 
+             label = ~Name) |> 
+  addLayersControl(
+    baseGroups = c("OSM (standard)", "Topografisk"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+# Hjælp til lige at komme det sidste stykke med at tegne ruten på:
+# https://stackoverflow.com/a/60940696/21019325
+```
+
+Her er ikke tale om en overspringshandling.
+
+# Forklaring
+
+Lige om lidt tager vi til Canada i tre måneder som led i min PhD-uddannelse.
+
+Først holder vi lidt ferie. På dag 2 kører vi afsted i en lejet camper og har 14 dage i den, hvor vi skal udforske den sydvestlige del af British Colombia.
+
+Vores rute er tegnet in på kortet herunder.
+
+```{r}
+#| code-summary: Print kort
+map
+```
+
+## Kommentarer
+
+Kortet er et lille forsøg på at binde forskelligt indhold sammen og visualisere det på en let tilgængelig og interaktiv måde.

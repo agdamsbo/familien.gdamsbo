@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<gpx version="1.1" creator="OsmAnd~ 4.4.7" xmlns="http://www.topografix.com/GPX/1/1" xmlns:osmand="https://osmand.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>favorites-Canada 2023</name>
+    <time>2023-06-22T19:02:55Z</time>
+  </metadata>
+  <wpt lat="49.0048106" lon="-122.7024955">
+    <time>2023-04-05T07:10:27Z</time>
+    <name>155</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:address>188 Street 155, South Surrey</osmand:address>
+      <osmand:icon>hamlet</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="49.9276806" lon="-119.5104682">
+    <ele>350.5</ele>
+    <time>2023-06-02T18:39:36Z</time>
+    <name>Bear Creek Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:osm_tag_email>info@campokanagan.com</osmand:osm_tag_email>
+      <osmand:website>https://www.env.gov.bc.ca/bcparks/explore/parkpgs/bear_crk/</osmand:website>
+      <osmand:phone>+1-250-548-0076</osmand:phone>
+      <osmand:amenity_name>Bear Creek Campground</osmand:amenity_name>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:osm_tag_sanitary_dump_station_yes>yes</osmand:osm_tag_sanitary_dump_station_yes>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:osm_tag_power_supply_no>no</osmand:osm_tag_power_supply_no>
+      <osmand:osm_tag_internet_access_type_no>no</osmand:osm_tag_internet_access_type_no>
+      <osmand:osm_tag_capacity>122</osmand:osm_tag_capacity>
+      <osmand:osm_tag_operator>Kaloya Contracting Ltd.</osmand:osm_tag_operator>
+      <osmand:address>I nærheden af Westside Place, Kelowna</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Bear Creek Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.1523705" lon="-122.9693298">
+    <time>2023-06-02T19:05:50Z</time>
+    <name>CanaDream</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>car_rental</osmand:amenity_subtype>
+      <osmand:amenity_name>CanaDream</osmand:amenity_name>
+      <osmand:amenity_type>service</osmand:amenity_type>
+      <osmand:address>92 Street 8223, Delta</osmand:address>
+      <osmand:icon>amenity_car_rental</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:CanaDream: service:car_rental</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="50.7790985" lon="-121.079483">
+    <time>2023-06-02T18:25:31Z</time>
+    <name>Juniper Beach Provincial Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:collapsable_power_supply>power_supply_yes</osmand:collapsable_power_supply>
+      <osmand:osm_tag_email>parkinquiries@telus.net</osmand:osm_tag_email>
+      <osmand:website>http://www.env.gov.bc.ca/bcparks/explore/parkpgs/juniper_bch/</osmand:website>
+      <osmand:phone>+1-250-320-9305</osmand:phone>
+      <osmand:amenity_name>Juniper Beach Provincial Campground</osmand:amenity_name>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:osm_tag_sanitary_dump_station_yes>yes</osmand:osm_tag_sanitary_dump_station_yes>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:osm_tag_internet_access_type_no>no</osmand:osm_tag_internet_access_type_no>
+      <osmand:osm_tag_capacity>32</osmand:osm_tag_capacity>
+      <osmand:osm_tag_operator>Brandywine Environmental Management Ltd.</osmand:osm_tag_operator>
+      <osmand:address>Juniper Beach Park Road, Cache Creek</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Juniper Beach Provincial Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="50.1287016" lon="-122.9372209">
+    <time>2023-06-02T18:22:27Z</time>
+    <name>Lost Lake</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>water</osmand:amenity_subtype>
+      <osmand:amenity_name>Lost Lake</osmand:amenity_name>
+      <osmand:amenity_type>natural</osmand:amenity_type>
+      <osmand:address>I nærheden af Lost Lake Trail, Whistler</osmand:address>
+      <osmand:icon>water</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Lost Lake: natural:water</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.0888761" lon="-120.6837738">
+    <ele>1085</ele>
+    <time>2023-06-02T18:42:17Z</time>
+    <name>Mule Deer Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:website>https://www.env.gov.bc.ca/bcparks/explore/parkpgs/ecmanning/</osmand:website>
+      <osmand:osm_tag_email>camping@manningpark.com</osmand:osm_tag_email>
+      <osmand:phone>+1-604-668-5953</osmand:phone>
+      <osmand:amenity_name>Mule Deer Campground</osmand:amenity_name>
+      <osmand:osm_tag_fax>+1-250-840-8848</osmand:osm_tag_fax>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:osm_tag_internet_access_type_no>no</osmand:osm_tag_internet_access_type_no>
+      <osmand:osm_tag_power_supply_no>no</osmand:osm_tag_power_supply_no>
+      <osmand:osm_tag_capacity>49</osmand:osm_tag_capacity>
+      <osmand:osm_tag_operator>Sunshine Valley Recreation Inc.</osmand:osm_tag_operator>
+      <osmand:address>Crowsnest Highway, Manning Park</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Mule Deer Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="50.2959023" lon="-122.8163376">
+    <ele>251.5</ele>
+    <time>2023-06-02T18:23:56Z</time>
+    <name>Nairn Falls Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:osm_tag_sanitary_dump_station_no>no</osmand:osm_tag_sanitary_dump_station_no>
+      <osmand:website>https://www.env.gov.bc.ca/bcparks/explore/parkpgs/nairn_falls/</osmand:website>
+      <osmand:osm_tag_email>info@seatoskyparks.com</osmand:osm_tag_email>
+      <osmand:phone>+1-604-986-9371</osmand:phone>
+      <osmand:amenity_name>Nairn Falls Campground</osmand:amenity_name>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:collapsable_wheelchair_accessibility>wheelchair_yes</osmand:collapsable_wheelchair_accessibility>
+      <osmand:osm_tag_internet_access_type_no>no</osmand:osm_tag_internet_access_type_no>
+      <osmand:osm_tag_capacity>94</osmand:osm_tag_capacity>
+      <osmand:osm_tag_operator>Sea to Sky Park Services Ltd.</osmand:osm_tag_operator>
+      <osmand:address>I nærheden af Sea-to-Sky Hwy, líl̓wat / Mount Currie</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Nairn Falls Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.829422" lon="-123.1500473">
+    <ele>68</ele>
+    <time>2023-06-02T18:21:10Z</time>
+    <name>Paradise Valley Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:website>https://paradisevalleycampground.net/</osmand:website>
+      <osmand:amenity_name>Paradise Valley Campground</osmand:amenity_name>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:address>I nærheden af Paradise Valley Road, Squamish</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Paradise Valley Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="50.7301292" lon="-120.0338669">
+    <ele>903</ele>
+    <time>2023-06-02T18:27:08Z</time>
+    <name>Pinantan Lake</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:address>Pinantan Lake</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="50.551494" lon="-119.1317242">
+    <ele>355.8</ele>
+    <time>2023-06-02T18:37:33Z</time>
+    <name>Quilakwa RV &amp; Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:address>Enderby Grindrod Road, Enderby</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.2733574" lon="-123.1038971">
+    <time>2023-06-02T20:18:09Z</time>
+    <name>Science World</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:osm_tag_official_name>TELUS World of Science</osmand:osm_tag_official_name>
+      <osmand:website>https://scienceworld.ca/</osmand:website>
+      <osmand:osm_tag_wikidata>Q1391769</osmand:osm_tag_wikidata>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:osm_tag_note> gz ¿+¨       Í,Ñ®#Ð°¤_RĒč«ÚÚàtVS©Ç½VÓäÞĒ2Ć+qlZą&lt;v¹ûIàęĂîb&lt;À&amp;V³j÷ðĐpÃ&gt;­\ø2)´ô­ricN~~ĝ®CþÔ4Ï2*×Cé¡ęÝlę   </osmand:osm_tag_note>
+      <osmand:amenity_subtype>museum</osmand:amenity_subtype>
+      <osmand:phone>+1-604-443-7440</osmand:phone>
+      <osmand:osm_tag_alt_name>Science World at Telus World of Science</osmand:osm_tag_alt_name>
+      <osmand:amenity_name>Science World</osmand:amenity_name>
+      <osmand:collapsable_fee>fee_yes</osmand:collapsable_fee>
+      <osmand:osm_tag_wikipedia>http://en.wikipedia.org/wiki/Science World (Vancouver)</osmand:osm_tag_wikipedia>
+      <osmand:collapsable_wheelchair_accessibility>wheelchair_yes</osmand:collapsable_wheelchair_accessibility>
+      <osmand:amenity_opening_hours>Mo-Su,PH 10:00-17:00; Jul 5 - Aug 30 Tu 10:00-20:00 || http://scienceworld.ca/hoursrates "Url"</osmand:amenity_opening_hours>
+      <osmand:address>Quebec Street 1455, Downtown</osmand:address>
+      <osmand:icon>tourism_museum</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Science World: tourism:museum</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="50.6620979" lon="-121.9253082">
+    <ele>292</ele>
+    <time>2023-06-02T18:25:05Z</time>
+    <name>Texas Creek Campground</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>camp_site</osmand:amenity_subtype>
+      <osmand:website>https://www.texascreekcampground.com/</osmand:website>
+      <osmand:phone>+1-778-209-2267</osmand:phone>
+      <osmand:amenity_name>Texas Creek Campground</osmand:amenity_name>
+      <osmand:collapsable_internet_access_type>internet_access_type_wlan</osmand:collapsable_internet_access_type>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:address>Texas Creek Road 2211, Lillooet</osmand:address>
+      <osmand:icon>tourism_camp_site</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Texas Creek Campground: tourism:camp_site</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.3327994" lon="-119.7218156">
+    <ele>805.5</ele>
+    <time>2023-06-02T18:41:08Z</time>
+    <name>Twin Lakes Golf Course &amp; RV Park</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:amenity_subtype>resort</osmand:amenity_subtype>
+      <osmand:website>https://www.twinlakesgolfresort.com/</osmand:website>
+      <osmand:amenity_name>Twin Lakes Golf Course &amp; RV Park</osmand:amenity_name>
+      <osmand:amenity_type>tourism</osmand:amenity_type>
+      <osmand:osm_tag_description>Golf Course and RV Park</osmand:osm_tag_description>
+      <osmand:address>I nærheden af Twin Lakes Road, Penticton</osmand:address>
+      <osmand:icon>tourism</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Twin Lakes Golf Course &amp; RV Park: tourism:resort</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="49.2416579" lon="-123.1928254">
+    <time>2023-06-02T16:48:34Z</time>
+    <name>West 34th Avenue, Dunbar-Southlands</name>
+    <type>Canada 2023</type>
+    <extensions>
+      <osmand:address>West 34th Avenue, Dunbar-Southlands</osmand:address>
+      <osmand:icon>special_house</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <extensions>
+    <osmand:points_groups>
+      <group name="Canada 2023" color="#eecc22" icon="special_star" background="circle" />
+    </osmand:points_groups>
+  </extensions>
+</gpx>
