@@ -1,0 +1,16 @@
+[
+  {
+    "listing": "/food.html",
+    "items": [
+      "/food/rugbrød.html",
+      "/food/surdej.html",
+      "/food/banankage.html"
+    ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/blog/canada_camper.html"
+    ]
+  }
+]
