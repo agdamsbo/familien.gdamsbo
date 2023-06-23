@@ -23,7 +23,6 @@ categories:
 # write.csv(bookmarks$waypoints,"data/camper_points.csv")
 
 library(dplyr)
-library(rmarkdown)
 
 camper <- read.csv("data/camper_points.csv",)[-1] |> arrange(Order)
 
