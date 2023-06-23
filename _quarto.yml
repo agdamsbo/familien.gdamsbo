@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: docs
 
 resources:
   - CNAME
@@ -15,19 +14,29 @@ website:
         text: Opskrifter
       - href: blog.qmd
         text: Blog
+    right:
+      - href: https://github.com/agdamsbo/familien.gdamsbo
+        text: Source
+  page-footer: 
+    background: light
+    center: |
+      Lavet med [Quarto](https://quarto.org/) i [RStudio]() | Statistics with [Umami](https://stats.nikohuru.dk/share/qpECsH3GvxLM5L92/fam.gdamsbo)
+
 
 format:
   html:
     code-fold: true
+    message: false
+    warning: false
     code-overflow: wrap
     theme: 
       dark: solar
       light: lumen
-    # css: styles.css
+    css: styles.css
     toc: true
     link-external-newwindow: true
     link-external-icon: false
-    # include-in-header: umami.html
+    include-in-header: umami.html
 
 editor: visual
 

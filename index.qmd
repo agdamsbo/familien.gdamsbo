@@ -1,9 +1,11 @@
 ---
 title: "Familien G Damsbo"
 about:
-  template: trestles
+  template: jolla
 ---
 
 Hej! Velkommen til vores familieside.
 
-Til en start er her bare lidt opskrifter og en rejsedagbog.
+Til en start er her bare lidt opskrifter og starten på en rejsedagbog.
+
+Det hele er lavet i Quarto og R. Det er let tilgængeligt, frit og åbent.
