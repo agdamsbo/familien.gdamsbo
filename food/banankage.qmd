@@ -1,5 +1,6 @@
 ---
 title: "Super nem banankage"
+lang: da
 date: 2023-04-28
 description: Der er aldrig nok banan i banankage. Sådan er det ikke her!
 categories:
@@ -42,3 +43,4 @@ Denne kage kan sagtens røres sammen med et par unger. Der er sjovt at mose bana
 4.  Formen smøres og drysses med rasp el. mel. Alternativt beklædes den med bagepapir.
 
 5.  Dejen hældes i formen og bages ca. 45 min. Tjek med en strikkepind at kagen er gennembagt.
+

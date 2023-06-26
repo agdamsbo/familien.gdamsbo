@@ -2,8 +2,9 @@
   {
     "listing": "/food.html",
     "items": [
-      "/food/rugbrød.html",
       "/food/surdej.html",
+      "/food/rugbrød.html",
+      "/food/elses_vafler.html",
       "/food/banankage.html"
     ]
   },

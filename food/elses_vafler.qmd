@@ -1,5 +1,6 @@
 ---
 title: Elses vafler
+lang: da
 date: last-modified
 description: Verdens bedste vafler. Punktum.
 author: Andreas
@@ -17,7 +18,7 @@ Derhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem
 
 Der er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.
 
-God  fornøjelse!
+God fornøjelse!
 
 ## Ingredienser
 
@@ -25,9 +26,9 @@ God  fornøjelse!
 
 -   2 dl molk
 
--   1/4 tsk salt 
+-   1/4 tsk salt
 
--   3,5 dl (275 g) mel 
+-   3,5 dl (275 g) mel
 
 -   2 tsk bagpilver
 
@@ -35,11 +36,11 @@ God  fornøjelse!
 
 ## Sådan gør du
 
-1.   Bland mælk, vand og salt og bisk det i melet, der er blandet med bagepulver.
+1.  Bland mælk, vand og salt og bisk det i melet, der er blandet med bagepulver.
 
-2.   Tilsæt smeltet, afkølet smør lige inden bagning.
+2.  Tilsæt smeltet, afkølet smør lige inden bagning.
 
-3.   Bag og nyd.
+3.  Bag og nyd.
 
 ## Slutnote
 

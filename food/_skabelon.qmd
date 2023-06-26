@@ -1,5 +1,6 @@
 ---
 title: Canada i camper
+lang: da
 date: last-modified
 description: Lidt om vores campertur.
 author: Andreas

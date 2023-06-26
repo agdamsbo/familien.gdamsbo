@@ -121,9 +121,9 @@
   {
     "objectID": "food.html",
     "href": "food.html",
-    "title": "Recepies",
+    "title": "Opskrifter",
     "section": "",
-    "text": "Vi er glade for at lave mad, og vi øver os i at have børnene med.\nHer deler vi nogle af vores yndlingsopskrifter. Så kan vi selv finde dem, og de kan deles.\nNogle opskrifter er originale, andre er meget inspireret og andre igen kopieret direkte fra andre sider. Vi refererer efter bedste evne.\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nRugbrød\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nVores hverdagsrugbrød. Det er blevet en vane, så det virker!\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSurdej\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nDet er ikke så svært endda.\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nSuper nem banankage\n\n\n\n\n\n\n\nKage\n\n\nBagværk\n\n\nBørnene med!\n\n\nDansk\n\n\n\n\nDer er aldrig nok banan i banankage. Sådan er det ikke her!\n\n\n\n\n\n\nApr 28, 2023\n\n\n\n\n\n\nNo matching items"
+    "text": "Vi er glade for at lave mad, og vi øver os i at have børnene med.\nHer deler vi nogle af vores yndlingsopskrifter. Så kan vi selv finde dem, og de kan deles.\nNogle opskrifter er originale, andre er meget inspireret og andre igen kopieret direkte fra andre sider. Vi refererer efter bedste evne.\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nSurdej\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nDet er ikke så svært endda.\n\n\n\n\n\n\n26. jun. 2023\n\n\n\n\n\n\n  \n\n\n\n\nRugbrød\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nVores hverdagsrugbrød. Det er blevet en vane, så det virker!\n\n\n\n\n\n\n26. jun. 2023\n\n\n\n\n\n\n  \n\n\n\n\nElses vafler\n\n\n\n\n\n\n\nKage\n\n\nForår\n\n\nBørnene med!\n\n\n\n\nVerdens bedste vafler. Punktum.\n\n\n\n\n\n\n26. jun. 2023\n\n\nAndreas\n\n\n\n\n\n\n  \n\n\n\n\nSuper nem banankage\n\n\n\n\n\n\n\nKage\n\n\nBagværk\n\n\nBørnene med!\n\n\nDansk\n\n\n\n\nDer er aldrig nok banan i banankage. Sådan er det ikke her!\n\n\n\n\n\n\n28. apr. 2023\n\n\n\n\n\n\nIngen resultater"
   },
   {
     "objectID": "blog.html",
@@ -131,5 +131,40 @@
     "title": "Blog",
     "section": "",
     "text": "Her handler det om alle mulige familieprojekter. Det kommer nok til at lugte lidt af kode og IT også.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanada i camper\n\n\n\nCanada\n\n\nRejse\n\n\nBørn\n\n\nR\n\n\n\nLidt om vores campertur.\n\n\n\nAndreas\n\n\nJun 26, 2023\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "food/elses_vafler.html",
+    "href": "food/elses_vafler.html",
+    "title": "Elses vafler",
+    "section": "",
+    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
+  },
+  {
+    "objectID": "food/elses_vafler.html#noter",
+    "href": "food/elses_vafler.html#noter",
+    "title": "Elses vafler",
+    "section": "",
+    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
+  },
+  {
+    "objectID": "food/elses_vafler.html#ingredienser",
+    "href": "food/elses_vafler.html#ingredienser",
+    "title": "Elses vafler",
+    "section": "Ingredienser",
+    "text": "Ingredienser\n\n2,5 dl vand\n2 dl molk\n1/4 tsk salt\n3,5 dl (275 g) mel\n2 tsk bagpilver\n125 g smør"
+  },
+  {
+    "objectID": "food/elses_vafler.html#sådan-gør-du",
+    "href": "food/elses_vafler.html#sådan-gør-du",
+    "title": "Elses vafler",
+    "section": "Sådan gør du",
+    "text": "Sådan gør du\n\nBland mælk, vand og salt og bisk det i melet, der er blandet med bagepulver.\nTilsæt smeltet, afkølet smør lige inden bagning.\nBag og nyd."
+  },
+  {
+    "objectID": "food/elses_vafler.html#slutnote",
+    "href": "food/elses_vafler.html#slutnote",
+    "title": "Elses vafler",
+    "section": "Slutnote",
+    "text": "Slutnote\nDen oprindelige opskrift tilsiger at fedtstof blandes i lige inden bagning. Erfaringen siger dog at det sagtens kan gøres aftenen før, og så egner vaflerne sig temmelig godt til det store brunch-bord."
   }
 ]
