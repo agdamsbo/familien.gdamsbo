@@ -183,9 +183,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sådan-gør-du" class="level2">
 <h2 class="anchored" data-anchor-id="sådan-gør-du">Sådan gør du</h2>
-<p>Alt blandes</p>
-<p>Formen smøres og drysses med rasp el. mel</p>
-<p>Bages ca. 45 min. ved 175 grader</p>
+<ol type="1">
+<li><p>Start med at tænde ovnen på 175 grader.</p></li>
+<li><p>Våde og tørre ingredienser blandes hver for sig.</p></li>
+<li><p>Alt blandes og røres godt sammen i en skål.</p></li>
+<li><p>Formen smøres og drysses med rasp el. mel. Alternativt beklædes den med bagepapir.</p></li>
+<li><p>Dejen hældes i formen og bages ca. 45 min. Tjek med en strikkepind at kagen er gennembagt.</p></li>
+</ol>
 
 
 </section>
@@ -538,7 +542,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("https:\/\/familien\.gdamsbo\.dk");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

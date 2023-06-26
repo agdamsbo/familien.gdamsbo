@@ -1,0 +1,14 @@
+{
+  "hash": "8649fbc62f1f907e8e448afc1e9cc3f3",
+  "result": {
+    "markdown": "---\ntitle: \"Familien G Damsbo\"\nabout:\n  template: jolla\n---\n\n::: {.cell}\n\n```{.r .cell-code}\ninvisible(Sys.setlocale(\"LC_TIME\", \"da_DK\"))\n```\n:::\n\n\n\nHej! Velkommen til vores familieside.\n\nTil en start er her bare lidt opskrifter og starten på en rejsedagbog.\n\nDet hele er lavet i Quarto og R. Det er let tilgængeligt, frit og åbent.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

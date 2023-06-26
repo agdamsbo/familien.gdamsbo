@@ -1,0 +1,22 @@
+---
+title: Canada i camper
+date: last-modified
+description: Lidt om vores campertur.
+author: Andreas
+image: "images/canada_map.png"
+categories:
+  - Canada
+  - Rejse
+  - Børn
+  - R
+---
+
+# Kode
+
+Her er ikke tale om en overspringshandling.
+
+# Forklaring
+
+Lige om lidt tager vi til Canada i tre måneder som led i min PhD-uddannelse.
+
+Først holder vi lidt ferie. På dag 2 kører vi afsted i en lejet camper og har 14 dage i den, hvor vi skal udforske den sydvestlige del af British Colombia.

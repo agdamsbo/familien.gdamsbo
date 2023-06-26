@@ -243,7 +243,7 @@ Brød
 <a href="./food/surdej.html"> </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Kage,Bagværk,Børnene med!,Dansk" data-listing-date-sort="1682632800000" data-listing-file-modified-sort="1687761536319" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="quarto-post image-right" data-index="2" data-categories="Kage,Bagværk,Børnene med!,Dansk" data-listing-date-sort="1682632800000" data-listing-file-modified-sort="1687763546193" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <div class="thumbnail">
 <p><a href="./food/banankage.html"> <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div> </a></p>
 </div>
@@ -636,7 +636,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("https:\/\/familien\.gdamsbo\.dk");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
