@@ -5,18 +5,29 @@ description: Lidt om vores campertur.
 author: Andreas
 image: "images/canada_map.png"
 categories:
-  - Canada
-  - Rejse
-  - Børn
-  - R
+  - Kage
+  - Bagværk
+  - Børnene med!
 ---
 
-# Kode
+## Noter
 
 Her er ikke tale om en overspringshandling.
 
-# Forklaring
+## Ingredienser
 
-Lige om lidt tager vi til Canada i tre måneder som led i min PhD-uddannelse.
+-   3-5 godt modne bananer - moses
 
-Først holder vi lidt ferie. På dag 2 kører vi afsted i en lejet camper og har 14 dage i den, hvor vi skal udforske den sydvestlige del af British Colombia.
+-   200-250 ml. sukker
+
+-   2 æg - moses m. gaffel
+
+-   1 tsk. natron
+
+-   5 dl. mel
+
+## Sådan gør du
+
+1.  Start med at tænde ovnen på 175 grader.
+
+2.  Våde og tørre ingredienser blandes hver for sig.
