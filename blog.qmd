@@ -1,5 +1,6 @@
 ---
 title: "Blog"
+lang: da
 listing:
   contents:
   - "blog/*.qmd"
