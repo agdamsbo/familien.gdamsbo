@@ -12,56 +12,99 @@ permissions:
   
 name: Render and Publish
 
+#jobs:
+#  build-deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Check out repository
+#        uses: actions/checkout@v3
+#        
+##      - name: Set dependecies
+##        uses: r-lib/actions/setup-r-dependencies@v2
+##        with:
+##          packages:
+##            any::knitr
+##            any::rmarkdown
+##            any::downlit
+##            any::xml2
+#        
+#      - name: Set up Quarto
+#        uses: quarto-dev/quarto-actions/setup@v2
+#        with:
+#          # To install LaTeX to build PDF book 
+#          tinytex: false 
+#          # uncomment below and fill to pin a version
+#          # version: SPECIFIC-QUARTO-VERSION-HERE
+#
+#      - name: Install R dependencies
+#        run: |
+#            install.packages("rmarkdown", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
+#            # if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes", dependencies = TRUE, quiet = TRUE, verbose = FALSE)}
+#            # remotes::install_deps(dependencies = TRUE)
+#            # if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
+#            # renv::restore()
+#            # if (!requireNamespace("fs", quietly = TRUE)) install.packages("fs", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
+#            # if (!requireNamespace("quarto", quietly = TRUE)) install.packages("quarto", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
+#            # saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+#            # writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+#        shell: Rscript {0}
+#
+#      - name: Render Site
+#        uses: quarto-dev/quarto-actions/render@v2
+#        with:
+#          to: html
+#    
+#      - name: Setup Pages
+#        uses: actions/configure-pages@v3
+#      - name: Upload artifact
+#        uses: actions/upload-pages-artifact@v1
+#        # with:
+#        #   # Upload entire repository
+#        #   path: 'docs/'
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v2
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-        
-#      - name: Set dependecies
-#        uses: r-lib/actions/setup-r-dependencies@v2
-#        with:
-#          packages:
-#            any::knitr
-#            any::rmarkdown
-#            any::downlit
-#            any::xml2
-        
+      
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+      - name: Setup pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+      - name: Get R version
+        id: get-r-version
+        run: echo "version=$(Rscript -e 'cat(as.character(getRversion()))')" >> $GITHUB_OUTPUT
+        shell: bash  
+      - name: Cache R packages
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ steps.get-r-version.outputs.version }}-3-
+      - name: Install pak
+        run: |
+          install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
+        shell: Rscript {0}
+      - name: Install dependencies
+        run: |
+          pak::local_install_dev_deps()
+        shell: Rscript {0}
+#      - name: Install knitr 1.42 to avoid bug in 1.43
+#        run: |
+#          devtools::install_version("knitr", version = "1.42")
+#        shell: Rscript {0}
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          # To install LaTeX to build PDF book 
-          tinytex: false 
-          # uncomment below and fill to pin a version
-          # version: SPECIFIC-QUARTO-VERSION-HERE
-
-      - name: Install R dependencies
-        run: |
-            install.packages("rmarkdown", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
-            # if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes", dependencies = TRUE, quiet = TRUE, verbose = FALSE)}
-            # remotes::install_deps(dependencies = TRUE)
-            # if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
-            # renv::restore()
-            # if (!requireNamespace("fs", quietly = TRUE)) install.packages("fs", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
-            # if (!requireNamespace("quarto", quietly = TRUE)) install.packages("quarto", dependencies = TRUE, quiet = TRUE, verbose = FALSE)
-            # saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-            # writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Render Site
-        uses: quarto-dev/quarto-actions/render@v2
-        with:
-          to: html
-    
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        # with:
-        #   # Upload entire repository
-        #   path: 'docs/'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          tinytex: false
       
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
