@@ -5,29 +5,17 @@ description: Lidt om vores campertur.
 author: Andreas
 image: "images/canada_map.png"
 categories:
-  - Kage
-  - Bagværk
-  - Børnene med!
+  - Canada
+  - Rejse
+  - Børn
+  - R
 ---
 
-# Noter
+## Kode
 
 Her er ikke tale om en overspringshandling.
 
-
-## Ingredienser
-
--   3-5 godt modne bananer - moses
-
--   200-250 ml. sukker
-
--   2 æg - moses m. gaffel
-
--   1 tsk. natron
-
--   5 dl. mel
-
-# Forklaring
+## Forklaring
 
 Lige om lidt tager vi til Canada i tre måneder som led i min PhD-uddannelse.
 
