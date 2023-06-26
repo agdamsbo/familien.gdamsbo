@@ -1,7 +1,7 @@
 ---
 title: Surdej
 lang: da
-date: last-modified
+date: 22-09-2022
 description: Det er ikke så svært endda.
 categories: 
   - Bagværk
