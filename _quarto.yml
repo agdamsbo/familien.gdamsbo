@@ -13,16 +13,16 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Start
       - href: food.qmd
         text: Opskrifter
       - href: blog.qmd
         text: Blog
     right:
       - href: https://github.com/agdamsbo/familien.gdamsbo
-        text: Source
+        text: Kildekode
   page-footer: 
-    background: light
+    background: dark
     center: |
       Lavet med [Quarto](https://quarto.org/) i [RStudio]() | Statistics with [Umami](https://stats.nikohuru.dk/share/qpECsH3GvxLM5L92/fam.gdamsbo)
 
