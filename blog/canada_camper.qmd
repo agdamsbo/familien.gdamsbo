@@ -79,18 +79,26 @@ map <- leaflet(trip) %>%
   # addProviderTiles(providers$HERE.satelliteDay,
   #                  group = "Satelit") %>%
   setView(lng = median(camper$Longitude), lat = median(camper$Latitude), zoom = 7) %>%
-  addPolylines() %>%
+  addPolylines(group = "Estimated route") %>%
   addMarkers(data = camper[-nrow(camper),],
              icon = icons_list,
              popup = content[-nrow(camper)], 
-             label = ~Name) |> 
+             label = ~Name, 
+             group = "Points") |> 
   addLayersControl(
     baseGroups = c("OSM (standard)", "Topografisk"),
+    overlayGroups = c("Estimated route", "Points"),
     options = layersControlOptions(collapsed = FALSE)
   )
 
 # Hjælp til lige at komme det sidste stykke med at tegne ruten på:
 # https://stackoverflow.com/a/60940696/21019325
+
+# Vejledning til at opsætte en lokal server med mulighed for modificeret profil.
+# https://www.r-bloggers.com/2017/09/building-a-local-osrm-instance/
+# Download specifikke områder: http://download.geofabrik.de/
+# 
+# Lastbil profil (den minder vel mere om en camper?): https://github.com/Project-OSRM/osrm-profiles-contrib/blob/master/5/27/truck-soft/car.lua
 ```
 
 Her er ikke tale om en overspringshandling.

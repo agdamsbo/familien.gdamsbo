@@ -53,3 +53,5 @@ rsconnect/
 /.quarto/
 
 food/refs/
+
+osrm-backend/
