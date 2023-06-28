@@ -1,7 +1,7 @@
 ---
 title: Hyldesaft
 lang: da
-date: last-modified
+date: 2023-06-28
 description: En klassiker i juni. 
 author: Andreas
 categories:
