@@ -1,7 +1,7 @@
 ---
 title: Rugbrød
 lang: da
-date: 22-09-2022
+date: 2022-09-22
 description: Vores hverdagsrugbrød. Det er blevet en vane, så det virker!
 categories: 
   - Bagværk
