@@ -1,7 +1,7 @@
 ---
 title: Elses vafler
 lang: da
-date: last-modified
+date: 05-03-2023
 description: Verdens bedste vafler. Punktum.
 author: Andreas
 categories:
