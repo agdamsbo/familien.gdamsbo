@@ -1,4 +1,13 @@
-
+---
+title: Hyldesaft
+lang: da
+date: last-modified
+description: En klassiker i juni. 
+author: Andreas
+categories:
+  - Sødt
+  - Børnene med!
+---
 
 ## Hyldeblomstsaft
 
