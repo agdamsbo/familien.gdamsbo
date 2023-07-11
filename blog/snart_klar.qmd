@@ -2,8 +2,8 @@
 title: Klar til afgang 
 lang: da
 freeze: false
-date: last-modified 
-description: Vil har næsten ikke talt om andet de sidste måneder, og nu er vil snart klar til afgang. 
+date: 2023-07-11
+description: Vi har næsten ikke talt om andet de sidste måneder, og nu er vi snart klar til afgang. 
 author: Andreas 
 image: "images/horn.png" 
 categories: 
@@ -13,8 +13,12 @@ categories:
 --- 
  
 ## Snart klar til afgang
-  
-Se lidt [billeder her](https://share.gdamsbo.dk/s/DwWjQfPjdzfRjf9). 
+
+Formiddagen har stået på pølsehornsbagning og tilretning af vores lidt rustikke havebord.
+
+Eftermiddagen var bytur i Aarhus og aftensmad hos Faour i Klastergade. yndlingsstedet!
+
+Her er lidt [billeder fra formoddagen](https://share.gdamsbo.dk/s/DwWjQfPjdzfRjf9). 
 
 ::: {#fig-billeder}
 
@@ -22,6 +26,4 @@ Se lidt [billeder her](https://share.gdamsbo.dk/s/DwWjQfPjdzfRjf9).
 
 Sidste forberedelser
 :::
-
-Sidste chance for at opdatere quarto-setup
 
