@@ -1,0 +1,16 @@
+--- 
+ title: Klar til afgang 
+ lang: da 
+ date: last-modified 
+ description: Vil har næsten ikke talt om andet de sidste måneder, og nu er vil snart klar til afgang. 
+ author: Andreas 
+ image: "images/horn.png" 
+ categories: 
+   - Canada 
+   - Rejse
+   - Forberedelser
+ --- 
+ 
+ ## Snart klar til afgang
+  
+Se lidt [billeder her](https://share.gdamsbo.dk/s/DwWjQfPjdzfRjf9). 
