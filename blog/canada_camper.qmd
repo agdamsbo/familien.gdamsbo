@@ -1,7 +1,7 @@
 ---
 title: Canada i camper
 lang: da
-date: last-modified
+date: 2023-06-28
 description: Lidt om vores campertur.
 author: Andreas
 image: "images/canada_map.png"
