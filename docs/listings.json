@@ -2,16 +2,20 @@
   {
     "listing": "/food.html",
     "items": [
-      "/food/rugbrød.html",
-      "/food/surdej.html",
+      "/food/hyldesaft.html",
+      "/food/banankage.html",
       "/food/elses_vafler.html",
-      "/food/banankage.html"
+      "/food/rugbrød.html",
+      "/food/surdej.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
-      "/blog/canada_camper.html"
+      "/blog/4_vancouver_og_camper.html",
+      "/blog/3_checked_in.html",
+      "/blog/2_snart_klar.html",
+      "/blog/1_canada_camper.html"
     ]
   }
 ]
