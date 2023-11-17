@@ -1,87 +1,17 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Familien G Damsbo",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
     "section": "",
-    "text": "Hej! Velkommen til vores familieside.\nTil en start er her bare lidt opskrifter og starten på en rejsedagbog.\nDet hele er lavet i Quarto og R. Det er let tilgængeligt, frit og åbent."
+    "text": "Her handler det om alle mulige familieprojekter. Det kommer nok til at lugte lidt af kode og IT også.\n\n\n\n\n\n\n\n\n\n\n\n\n\nLandet i Vancouver, camper og landet igen!\n\n\n\nCanada\n\n\nBC\n\n\nVancouver\n\n\nCamper\n\n\nBørn\n\n\n\nDer er kun gået 19 dage og alligevel synes vi nok at vi allerede har oplevet en del!.\n\n\n\nAndreas\n\n\n3. aug. 2023\n\n\n\n\n\n\n\n\n\n\n\n\nFørst med tog og så med fly\n\n\n\nCanada\n\n\nRejse\n\n\nTog\n\n\n\nSå er vi med toget og er lykkedes med at checke ind til hele flyrejsen i morgen.\n\n\n\nAndreas\n\n\n14. jul. 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKlar til afgang\n\n\n\nCanada\n\n\nRejse\n\n\nForberedelser\n\n\n\nVi har næsten ikke talt om andet de sidste måneder, og nu er vi snart klar til afgang.\n\n\n\nAndreas\n\n\n11. jul. 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanada i camper\n\n\n\nCanada\n\n\nRejse\n\n\nBørn\n\n\nR\n\n\n\nLidt om vores campertur.\n\n\n\nAndreas\n\n\n28. jun. 2023\n\n\n\n\n\n\n\n\nIngen resultater"
   },
   {
-    "objectID": "blog/canada_camper.html",
-    "href": "blog/canada_camper.html",
-    "title": "Canada i camper",
+    "objectID": "food/surdej.html",
+    "href": "food/surdej.html",
+    "title": "Surdej",
     "section": "",
-    "text": "Kode til oversigtskort\n# Original export from plotting in OsmAnd on phone\n# bookmarks &lt;- gpx::read_gpx(file = \"data/favorites_canada_2023.gpx\")\n\n# Udtræk til .csv, herefter manuelt tilpasset, sorteret og tilføjet yderligere data.\n# write.csv(bookmarks$waypoints,\"data/camper_points.csv\")\n\nlibrary(dplyr)\n\ncamper &lt;- read.csv(\"data/camper_points.csv\",)[-1] |&gt; arrange(Order)\n\n# Alternative source from RVParky export\n# RVParky er fed, men fornyligt er det blevet en betalingstjeneste. Hvorfor er den ikke integreret i OSM?\n# vnc &lt;- gpx::read_gpx(file = \"data/vancouver-trip.gpx\")\n\n## Iconer\nmatching &lt;- c(car=\"images/key.png\", \n              bed=\"images/rv.png\", \n              house=\"images/house.png\")\n\nlibrary(leaflet)\n\nicons_list &lt;- icons(\n  iconUrl = matching[match(camper$Icon,names(matching))],\n  iconWidth = c(40),\n  iconHeight = c(40)\n)\n\n## Så er det tid til at bruge Open Street Routing Machine\n\nlibrary(osrm)\n\n# osrmTable(loc = camper |&gt; transmute(lon=Longitude,lat=Latitude))\n\ntrips &lt;- osrmTrip(loc = camper |&gt; transmute(lon=Longitude,lat=Latitude), overview = \"full\",\n                   osrm.profile = \"car\")\ntrip &lt;- trips[[1]]$trip\n\n# There exists a lua filter for truck, put I can't figure how to implement.\n# I suppose I would have to run a local OSRM instance...\n\n## HTML labels til kortet\n\ninvisible(Sys.setlocale(\"LC_TIME\", \"da_DK\"))\n\ncontent &lt;- paste0(\n  ifelse(substr(camper$Description,1,4)!=\"http\"|is.na(camper$Description),paste0(\"&lt;br/&gt;\",camper$Name),paste0(\"&lt;b&gt;&lt;a href='\",camper$Description,\"'&gt;\",camper$Name,\"&lt;/a&gt;&lt;/b&gt;\")),\n  \"&lt;br/&gt;\",paste(\"Ankomst:\",tolower(format(as.Date(camper$Arrival),\"%d. %B\"))),\n  \"&lt;br/&gt;\",paste(\"Nætter:\",camper$Nights),\n  \"&lt;br/&gt;\",paste(\"Tid til næste:\",round(trips[[1]]$trip$duration,1),\"min\"),\n  \"&lt;br/&gt;\",paste(\"Afstand til næste:\",round(trips[[1]]$trip$distance,1),\"km\"),\n  ifelse(camper$Notes!=\"\",paste0(\"&lt;br/&gt;\",paste(\"Noter:\",camper$Notes)),\"\")\n)\n\n## Interaktivt kort med `leaflet`\n\nmap &lt;- leaflet(trip) %&gt;%\n  addTiles(group = \"OSM (standard)\") %&gt;%\n  addProviderTiles(providers$OpenTopoMap,\n                   group = \"Topografisk\") %&gt;%\n  # addProviderTiles(providers$HERE.satelliteDay,\n  #                  group = \"Satelit\") %&gt;%\n  setView(lng = median(camper$Longitude), lat = median(camper$Latitude), zoom = 7) %&gt;%\n  addPolylines(group = \"Estimated route\") %&gt;%\n  addMarkers(data = camper[-nrow(camper),],\n             icon = icons_list,\n             popup = content[-nrow(camper)], \n             label = ~Name, \n             group = \"Points\") |&gt; \n  addLayersControl(\n    baseGroups = c(\"OSM (standard)\", \"Topografisk\"),\n    overlayGroups = c(\"Estimated route\", \"Points\"),\n    options = layersControlOptions(collapsed = FALSE)\n  )\n\n# Hjælp til lige at komme det sidste stykke med at tegne ruten på:\n# https://stackoverflow.com/a/60940696/21019325\n\n# Vejledning til at opsætte en lokal server med mulighed for modificeret profil.\n# https://www.r-bloggers.com/2017/09/building-a-local-osrm-instance/\n# Download specifikke områder: http://download.geofabrik.de/\n# \n# Lastbil profil (den minder vel mere om en camper?): https://github.com/Project-OSRM/osrm-profiles-contrib/blob/master/5/27/truck-soft/car.lua\n\n\nHer er ikke tale om en overspringshandling."
-  },
-  {
-    "objectID": "blog/canada_camper.html#kommentarer",
-    "href": "blog/canada_camper.html#kommentarer",
-    "title": "Canada i camper",
-    "section": "Kommentarer",
-    "text": "Kommentarer\nKortet er et lille forsøg på at binde forskelligt indhold sammen og visualisere det på en let tilgængelig og interaktiv måde."
-  },
-  {
-    "objectID": "food/formbrød.html",
-    "href": "food/formbrød.html",
-    "title": "Familien G Damsbo",
-    "section": "",
-    "text": "Rest surdej (150 g) 7 dl vand 2 håndfulde havregryn 25 g salt 10 g gær 1 håndfuld hørfrø Mel\nBagt 35 min ved 200gr.\nLidt surt. Ok med mindre surdej, eller flere brød."
-  },
-  {
-    "objectID": "food/formbrød.html#formbrød",
-    "href": "food/formbrød.html#formbrød",
-    "title": "Familien G Damsbo",
-    "section": "",
-    "text": "Rest surdej (150 g) 7 dl vand 2 håndfulde havregryn 25 g salt 10 g gær 1 håndfuld hørfrø Mel\nBagt 35 min ved 200gr.\nLidt surt. Ok med mindre surdej, eller flere brød."
-  },
-  {
-    "objectID": "food/groft hvede-surdejsbrød.html",
-    "href": "food/groft hvede-surdejsbrød.html",
-    "title": "Familien G Damsbo",
-    "section": "",
-    "text": "Groft hvede-surdejsbrød_   _ https://www.dr.dk/mad/opskrift/groft-hvede-surdejsbrod\nIngredienser\n\n5 g gær (økologisk gær anbefales pga. bedre hæve-effekt)\n6 dl koldt vand\n1,5 dl hvedesurdej\n150 g fuldkornshvedemel (f.eks. ølandshvede, spelt eller emmermel) (300)\n750 g hvedemel (600)\n20 g havsalt\n2 spsk. olie\n\nSærdeles velegnet til boller også. Deles i 16-20 stykker og bages 13-15 min ved 250gr\nDag 1\n\nRør gæren ud i det kolde vand i skålen til røremaskinen. \nTilsæt resten af ingredienserne og ælt dejen godt igennem på røremaskinen i ca. 10 minutter. \nHvis du rører dejen i hånden, skal du røre i lidt længere tid. \nDejen skal være så smidig, at den slipper skålen eller bordpladen. \nSmør olie på indersiden af en skål og kom dejen i. \nDæk med film og lad dejen koldhæve i køleskabet natten over. \n\nDag 2 1. Vend dejen ud på et meldrysset bord og del den i to brød. Rør ikke for meget ved dejen, da luften derved vil blive presset ud af den. Lad brødene hæve på et stykke bagepapir i 30-40 minutter.  2. Varm imens ovnen op til 250 grader ved varmluft med din tykkeste bageplade på den midterste hylde. Tag bagepladen ud, når ovnen er varm og træk bagepapiret, som brødene ligger på, over på den varme bageplade.  3. Sæt pladen tilbage midt i ovnen og sprøjt grundigt med vand ind i ovnen med en forstøver, så der hurtigt opstår damp. 4. Luk lågen og bag brødene i ca. 35 minutter. Vend bagepladen 1-2 gange undervejs for at sikre en jævn afbagning. Skru evt. lidt ned for temperaturen de sidste 10 minutter, hvis brødene bliver for mørke.  5. Tag brødene ud og lad dem afkøle på en rist i cirka 30 minutter, før du skærer i dem. 6."
-  },
-  {
-    "objectID": "food/fladmast hane med nye hvidlog.html",
-    "href": "food/fladmast hane med nye hvidlog.html",
-    "title": "Familien G Damsbo",
-    "section": "",
-    "text": "fladmast hane med nye hvidlog\n\n\nFladmast hane med nye hvidlog\nFladmasning kræver ikke stor køkkensnilde. Det er en ret genial måde at stege kyllinger på, for man får sprødt skind over det hele. Samtidigt bliver den foldet på en måde, som forhindre brystkødet at blive tørt.\nTil 6 personer\nEn stor hane eller kylling 1 ½ kg. Kartofler 3 hele hvidløg 1 citron salt og peber olivenolie\nLæg hanen på et bræt med brystet nedad. Skær med en meget skarp og tung kniv langs rygbenet på begge sider og tag rygbenet væk - halsen følger med. Vend hanen om og tryk den flad. Skær kartoflerne i kvarter - gerne med skræl. Fjern de yderste seje hinder fra hvidløgene og skær dem i kvarter. Skræl den ene halvdel af citronen tyndt. Læg hvidløg og citronskal i en bradepande og læg den fladmaste hane ovenpå med skindsiden opad Arranger kartoflerne udenom, drys med salt og peber, og dryp med olivenolie. Hæld 3 dl. vand ved.\nBag ved 200° - til hanen er er mør og sprød - ca. 1 time.\nDer skal rumses lidt rundt i kartoflerne undervejs så de ikke branker.\nNår hanen tages ud af ovnen, presses citronen ud over kartoflerne.\nSpis hvidløgene som en creme til at smøre på kød og grønsager."
-  },
-  {
-    "objectID": "food/elses_vafler.html",
-    "href": "food/elses_vafler.html",
-    "title": "Elses vafler",
-    "section": "",
-    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
-  },
-  {
-    "objectID": "food/elses_vafler.html#noter",
-    "href": "food/elses_vafler.html#noter",
-    "title": "Elses vafler",
-    "section": "",
-    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
-  },
-  {
-    "objectID": "food/elses_vafler.html#ingredienser",
-    "href": "food/elses_vafler.html#ingredienser",
-    "title": "Elses vafler",
-    "section": "Ingredienser",
-    "text": "Ingredienser\n\n2,5 dl vand\n2 dl molk\n1/4 tsk salt\n3,5 dl (275 g) mel\n2 tsk bagpilver\n125 g smør"
-  },
-  {
-    "objectID": "food/elses_vafler.html#sådan-gør-du",
-    "href": "food/elses_vafler.html#sådan-gør-du",
-    "title": "Elses vafler",
-    "section": "Sådan gør du",
-    "text": "Sådan gør du\n\nBland mælk, vand og salt og bisk det i melet, der er blandet med bagepulver.\nTilsæt smeltet, afkølet smør lige inden bagning.\nBag og nyd."
-  },
-  {
-    "objectID": "food/elses_vafler.html#slutnote",
-    "href": "food/elses_vafler.html#slutnote",
-    "title": "Elses vafler",
-    "section": "Slutnote",
-    "text": "Slutnote\nDen oprindelige opskrift tilsiger at fedtstof blandes i lige inden bagning. Erfaringen siger dog at det sagtens kan gøres aftenen før, og så egner vaflerne sig temmelig godt til det store brunch-bord."
+    "text": "Vi bager hverdagsbrød, så her kommer mine gode råd til en hverdagssurdej.\nSlap af. Det er ikke svært! Punktum.\nKan opbevares på køl i en mindre beholder. Tages ud 1-2 dage før brug. Brug en beholder på omtrent en liter. Surdejen “fodres” med ca 1,5 dl vand og 1,5 dl mel (fx blanding af rug og spelt, altså det samme mel som skal bruges i brødet). Konsistensen skal være som lidt tynd havregrød. Rør i surdejen et par gange dagligt. Sørg for, at der er lidt surdej tilbage når du har taget fra til brøddej og sæt så resten på køl i en lukket beholder til næste gang.\nKommer der snask på toppen, så skrab det af, tag en skefuld surdej fra i en ren beholder, smid den gamle surdej ud og bliv glad for den ny. Fodr den ny surdej, vent et par dage, og så er den klar til brug.\nSurdejen er også god til lyst brød, og en lille rest smager godt i pandekager."
   },
   {
     "objectID": "food/rugbrød.html",
@@ -112,67 +42,46 @@
     "text": "Dag 3\nDejen fra Dag 2 samt drænede, udblødte rugkerner (og nødder/frø) blandes.\nDesuden tilsættes følgende:\n\n5 dl frø (fx ligelig fordeling af hørfrø, sesam, solsikke- og græskarkerner)\n1-2 spsk honning (kan røres ud i øl)\n1 øl (33 cl, gerne hvidtøl eller anden mørk øl, men det kommer sig ikke så nøje)\nCa 4 dl rugmel til rette konsistens.\n\nDet hele røres godt sammen. Det skal have en tyk, sej klistret konsistens og fordeles i 3 smurte rugbrødsforme der rummer 2 liter (eller 2 forme á 2-3 liter). Glat dejen.\nLad nu brødene hæve under et fugtigt viskestykke indtil dejen når lidt op over kanten (1-3 timer). Inden de bages, brug da en våd strikkepind eller lignende til at prikke huller i brødene (ca. 30 i hver), så der ikke opstår luftlommer. Bages med konventionel varme ved 180°C i 1 ½ time. For en blød skorpe lægges brødene i plastposer umiddelbart efter bagning. Egner sig til at fryse ned, men vent to døgn. Så smuldrer brødet ikke så meget når det skæres efter optøning.\nTip: rør ca 2 spsk mørk maltsirup i dejen på dag to. Giver mere smag og farve."
   },
   {
-    "objectID": "food/banankage.html",
-    "href": "food/banankage.html",
-    "title": "Super nem banankage",
+    "objectID": "food/hyldesaft.html",
+    "href": "food/hyldesaft.html",
+    "title": "Hyldesaft",
     "section": "",
-    "text": "Denne kage kan sagtens røres sammen med et par unger. Der er sjovt at mose bananer og røre i dej. Dejen smager også ubagt og er jo ikke så farlig. Det tager 15-20 minutter at røre det hele sammen og det passer til en klassisk rugbrødsform på ca 3 L. Kagen er særdeles velegnet til at lægge i fryseren."
+    "text": "40-50 hyldekurve (stængler klippes evt af)\n3 kg sukker (evt heraf 500 g brun farin)\n4 l vand\n8-13 økologiske citroner i skiver, antal afhængigt af størrelse (kan blandes med ØKO appelsiner)"
   },
   {
-    "objectID": "food/banankage.html#noter",
-    "href": "food/banankage.html#noter",
-    "title": "Super nem banankage",
+    "objectID": "food/hyldesaft.html#hyldeblomstsaft",
+    "href": "food/hyldesaft.html#hyldeblomstsaft",
+    "title": "Hyldesaft",
     "section": "",
-    "text": "Denne kage kan sagtens røres sammen med et par unger. Der er sjovt at mose bananer og røre i dej. Dejen smager også ubagt og er jo ikke så farlig. Det tager 15-20 minutter at røre det hele sammen og det passer til en klassisk rugbrødsform på ca 3 L. Kagen er særdeles velegnet til at lægge i fryseren."
+    "text": "40-50 hyldekurve (stængler klippes evt af)\n3 kg sukker (evt heraf 500 g brun farin)\n4 l vand\n8-13 økologiske citroner i skiver, antal afhængigt af størrelse (kan blandes med ØKO appelsiner)"
   },
   {
-    "objectID": "food/banankage.html#ingredienser",
-    "href": "food/banankage.html#ingredienser",
-    "title": "Super nem banankage",
-    "section": "Ingredienser",
-    "text": "Ingredienser\n\n3-5 godt modne bananer - moses\n200-250 ml. sukker\n2 æg - moses m. gaffel\n1 tsk. natron\n5 dl. mel\n2 dI. hakkede valnødder\n1½ dl. olie/margarine\n1 tsk. vanillesukker"
-  },
-  {
-    "objectID": "food/banankage.html#sådan-gør-du",
-    "href": "food/banankage.html#sådan-gør-du",
-    "title": "Super nem banankage",
+    "objectID": "food/hyldesaft.html#sådan-gør-du",
+    "href": "food/hyldesaft.html#sådan-gør-du",
+    "title": "Hyldesaft",
     "section": "Sådan gør du",
-    "text": "Sådan gør du\n\nStart med at tænde ovnen på 175 grader.\nVåde og tørre ingredienser blandes hver for sig.\nAlt blandes og røres godt sammen i en skål.\nFormen smøres og drysses med rasp el. mel. Alternativt beklædes den med bagepapir.\nDejen hældes i formen og bages ca. 45 min. Tjek med en strikkepind at kagen er gennembagt."
+    "text": "Sådan gør du\nSukker opløses i kogende vand i en stor gryde (8-9 l). Hyld og citrusskiver tilsættes. Fylder ca. 8 l.\nStår 3 dage i køleskab eller køligt.\nFiltreres gennem dørslag, si og et klæde. Det sidste dog ikke strengt nødvendigt. Tilsættes evt 2 spsk atamon eller opbevares i fryser.\nGiver ca 6 l saft."
   },
   {
-    "objectID": "food/surdej.html",
-    "href": "food/surdej.html",
-    "title": "Surdej",
+    "objectID": "food/groft hvede-surdejsbrød.html",
+    "href": "food/groft hvede-surdejsbrød.html",
+    "title": "Familien G Damsbo",
     "section": "",
-    "text": "Vi bager hverdagsbrød, så her kommer mine gode råd til en hverdagssurdej.\nSlap af. Det er ikke svært! Punktum.\nKan opbevares på køl i en mindre beholder. Tages ud 1-2 dage før brug. Brug en beholder på omtrent en liter. Surdejen “fodres” med ca 1,5 dl vand og 1,5 dl mel (fx blanding af rug og spelt, altså det samme mel som skal bruges i brødet). Konsistensen skal være som lidt tynd havregrød. Rør i surdejen et par gange dagligt. Sørg for, at der er lidt surdej tilbage når du har taget fra til brøddej og sæt så resten på køl i en lukket beholder til næste gang.\nKommer der snask på toppen, så skrab det af, tag en skefuld surdej fra i en ren beholder, smid den gamle surdej ud og bliv glad for den ny. Fodr den ny surdej, vent et par dage, og så er den klar til brug.\nSurdejen er også god til lyst brød, og en lille rest smager godt i pandekager."
+    "text": "Groft hvede-surdejsbrød_   _ https://www.dr.dk/mad/opskrift/groft-hvede-surdejsbrod\nIngredienser\n\n5 g gær (økologisk gær anbefales pga. bedre hæve-effekt)\n6 dl koldt vand\n1,5 dl hvedesurdej\n150 g fuldkornshvedemel (f.eks. ølandshvede, spelt eller emmermel) (300)\n750 g hvedemel (600)\n20 g havsalt\n2 spsk. olie\n\nSærdeles velegnet til boller også. Deles i 16-20 stykker og bages 13-15 min ved 250gr\nDag 1\n\nRør gæren ud i det kolde vand i skålen til røremaskinen. \nTilsæt resten af ingredienserne og ælt dejen godt igennem på røremaskinen i ca. 10 minutter. \nHvis du rører dejen i hånden, skal du røre i lidt længere tid. \nDejen skal være så smidig, at den slipper skålen eller bordpladen. \nSmør olie på indersiden af en skål og kom dejen i. \nDæk med film og lad dejen koldhæve i køleskabet natten over. \n\nDag 2 1. Vend dejen ud på et meldrysset bord og del den i to brød. Rør ikke for meget ved dejen, da luften derved vil blive presset ud af den. Lad brødene hæve på et stykke bagepapir i 30-40 minutter.  2. Varm imens ovnen op til 250 grader ved varmluft med din tykkeste bageplade på den midterste hylde. Tag bagepladen ud, når ovnen er varm og træk bagepapiret, som brødene ligger på, over på den varme bageplade.  3. Sæt pladen tilbage midt i ovnen og sprøjt grundigt med vand ind i ovnen med en forstøver, så der hurtigt opstår damp. 4. Luk lågen og bag brødene i ca. 35 minutter. Vend bagepladen 1-2 gange undervejs for at sikre en jævn afbagning. Skru evt. lidt ned for temperaturen de sidste 10 minutter, hvis brødene bliver for mørke.  5. Tag brødene ud og lad dem afkøle på en rist i cirka 30 minutter, før du skærer i dem. 6."
   },
   {
-    "objectID": "food.html",
-    "href": "food.html",
-    "title": "Opskrifter",
+    "objectID": "blog/2_snart_klar.html",
+    "href": "blog/2_snart_klar.html",
+    "title": "Klar til afgang",
     "section": "",
-    "text": "Vi er glade for at lave mad, og vi øver os i at have børnene med.\nHer deler vi nogle af vores yndlingsopskrifter. Så kan vi selv finde dem, og de kan deles.\nNogle opskrifter er originale, andre er meget inspireret og andre igen kopieret direkte fra andre sider. Vi refererer efter bedste evne.\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nHyldesaft\n\n\n\n\n\n\n\nSødt\n\n\nBørnene med!\n\n\n\n\nEn klassiker i juni.\n\n\n\n\n\n\n28. jun. 2023\n\n\nAndreas\n\n\n\n\n\n\n  \n\n\n\n\nSuper nem banankage\n\n\n\n\n\n\n\nKage\n\n\nBagværk\n\n\nBørnene med!\n\n\nDansk\n\n\n\n\nDer er aldrig nok banan i banankage. Sådan er det ikke her!\n\n\n\n\n\n\n28. apr. 2023\n\n\n\n\n\n\n  \n\n\n\n\nElses vafler\n\n\n\n\n\n\n\nKage\n\n\nForår\n\n\nBørnene med!\n\n\n\n\nVerdens bedste vafler. Punktum.\n\n\n\n\n\n\n5. mar. 2023\n\n\nAndreas\n\n\n\n\n\n\n  \n\n\n\n\nRugbrød\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nVores hverdagsrugbrød. Det er blevet en vane, så det virker!\n\n\n\n\n\n\n22. sep. 2022\n\n\n\n\n\n\n  \n\n\n\n\nSurdej\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nDet er ikke så svært endda.\n\n\n\n\n\n\n22. sep. 2022\n\n\n\n\n\n\nIngen resultater"
+    "text": "Formiddagen har stået på pølsehornsbagning og tilretning af vores lidt rustikke havebord.\nEftermiddagen var bytur i Aarhus og aftensmad hos Faour i Klastergade. yndlingsstedet!\nHer er lidt billeder fra formoddagen.\n\n\n\n\nFigur 1: Sidste forberedelser"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
+    "objectID": "blog/2_snart_klar.html#snart-klar-til-afgang",
+    "href": "blog/2_snart_klar.html#snart-klar-til-afgang",
+    "title": "Klar til afgang",
     "section": "",
-    "text": "Her handler det om alle mulige familieprojekter. Det kommer nok til at lugte lidt af kode og IT også.\n\n\n\n\n\n\n\n\n\n\n\n\n\nLandet i Vancouver, camper og landet igen!\n\n\n\nCanada\n\n\nBC\n\n\nVancouver\n\n\nCamper\n\n\nBørn\n\n\n\nDer er kun gået 19 dage og alligevel synes vi nok at vi allerede har oplevet en del!.\n\n\n\nAndreas\n\n\n3. aug. 2023\n\n\n\n\n\n\n\n\n\n\n\n\nFørst med tog og så med fly\n\n\n\nCanada\n\n\nRejse\n\n\nTog\n\n\n\nSå er vi med toget og er lykkedes med at checke ind til hele flyrejsen i morgen.\n\n\n\nAndreas\n\n\n14. jul. 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKlar til afgang\n\n\n\nCanada\n\n\nRejse\n\n\nForberedelser\n\n\n\nVi har næsten ikke talt om andet de sidste måneder, og nu er vi snart klar til afgang.\n\n\n\nAndreas\n\n\n11. jul. 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCanada i camper\n\n\n\nCanada\n\n\nRejse\n\n\nBørn\n\n\nR\n\n\n\nLidt om vores campertur.\n\n\n\nAndreas\n\n\n28. jun. 2023\n\n\n\n\n\n\n\n\nIngen resultater"
-  },
-  {
-    "objectID": "blog/3_checked_in.html",
-    "href": "blog/3_checked_in.html",
-    "title": "Først med tog og så med fly",
-    "section": "",
-    "text": "Vi er godt med toget. Mange rejsende til koncert og alt muligt andet. Det er altid spændende med rejser, hvor alle de andre er på vej hen. Ved siden af skal de til Bruce Springsteen-koncert. Heller ikke tosset.\nI morgen skla vi være i lufthavnen lidt før kl 10. Lørdag er der dømt storbyfornemmelse med hotelovernatning downtown Vancouver og søndag er der afgang med camper. Se tidligere for rute. Det er sandelig mange nye oplevelser i udsigt på få dage. Anne er helt overvældet, men lægger sig heldigvis bare til at sove i toget. Ebba kan ikke sove men spiser pølsehorn. Eller det vil sige at hun spiser ketchup med pølsehornet. Det er en god ske.\nDe voksne er spændte og vi er endnu ikke kommet i tanker om noget vi har glemt.."
-  },
-  {
-    "objectID": "blog/3_checked_in.html#først-med-tog-og-så-med-fly",
-    "href": "blog/3_checked_in.html#først-med-tog-og-så-med-fly",
-    "title": "Først med tog og så med fly",
-    "section": "",
-    "text": "Vi er godt med toget. Mange rejsende til koncert og alt muligt andet. Det er altid spændende med rejser, hvor alle de andre er på vej hen. Ved siden af skal de til Bruce Springsteen-koncert. Heller ikke tosset.\nI morgen skla vi være i lufthavnen lidt før kl 10. Lørdag er der dømt storbyfornemmelse med hotelovernatning downtown Vancouver og søndag er der afgang med camper. Se tidligere for rute. Det er sandelig mange nye oplevelser i udsigt på få dage. Anne er helt overvældet, men lægger sig heldigvis bare til at sove i toget. Ebba kan ikke sove men spiser pølsehorn. Eller det vil sige at hun spiser ketchup med pølsehornet. Det er en god ske.\nDe voksne er spændte og vi er endnu ikke kommet i tanker om noget vi har glemt.."
+    "text": "Formiddagen har stået på pølsehornsbagning og tilretning af vores lidt rustikke havebord.\nEftermiddagen var bytur i Aarhus og aftensmad hos Faour i Klastergade. yndlingsstedet!\nHer er lidt billeder fra formoddagen.\n\n\n\n\nFigur 1: Sidste forberedelser"
   },
   {
     "objectID": "blog/4_vancouver_og_camper.html",
@@ -217,6 +126,20 @@
     "text": "Billeder\nHer har vi delt lidt billeder fra den første tid i Canada. God fornøjelse."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Familien G Damsbo",
+    "section": "",
+    "text": "Hej! Velkommen til vores familieside.\nTil en start er her bare lidt opskrifter og starten på en rejsedagbog.\nDet hele er lavet i Quarto og R. Det er let tilgængeligt, frit og åbent."
+  },
+  {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "Familien G Damsbo",
+    "section": "",
+    "text": "Attribution 4.0 International\n=======================================================================\nCreative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.\nUsing Creative Commons Public Licenses\nCreative Commons public licenses provide a standard set of terms and conditions that creators and other rights holders may use to share original works of authorship and other material subject to copyright and certain other rights specified in the public license below. The following considerations are for informational purposes only, are not exhaustive, and do not form part of our licenses.\n Considerations for licensors: Our public licenses are\n intended for use by those authorized to give the public\n permission to use material in ways otherwise restricted by\n copyright and certain other rights. Our licenses are\n irrevocable. Licensors should read and understand the terms\n and conditions of the license they choose before applying it.\n Licensors should also secure all rights necessary before\n applying our licenses so that the public can reuse the\n material as expected. Licensors should clearly mark any\n material not subject to the license. This includes other CC-\n licensed material, or material used under an exception or\n limitation to copyright. More considerations for licensors:\nwiki.creativecommons.org/Considerations_for_licensors\n\n Considerations for the public: By using one of our public\n licenses, a licensor grants the public permission to use the\n licensed material under specified terms and conditions. If\n the licensor's permission is not necessary for any reason--for\n example, because of any applicable exception or limitation to\n copyright--then that use is not regulated by the license. Our\n licenses grant only permissions under copyright and certain\n other rights that a licensor has authority to grant. Use of\n the licensed material may still be restricted for other\n reasons, including because others have copyright or other\n rights in the material. A licensor may make special requests,\n such as asking that all changes be marked or described.\n Although not required by our licenses, you are encouraged to\n respect those requests where reasonable. More considerations\n for the public: \nwiki.creativecommons.org/Considerations_for_licensees\n=======================================================================\nCreative Commons Attribution 4.0 International Public License\nBy exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution 4.0 International Public License (“Public License”). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.\nSection 1 – Definitions.\n\nAdapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.\nAdapter’s License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.\nCopyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.\nEffective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.\nExceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.\nLicensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.\nLicensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.\nLicensor means the individual(s) or entity(ies) granting rights under this Public License.\nShare means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.\nSui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.\nYou means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.\n\nSection 2 – Scope.\n\nLicense grant.\n\nSubject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:\n\nreproduce and Share the Licensed Material, in whole or in part; and\nproduce, reproduce, and Share Adapted Material.\n\nExceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.\nTerm. The term of this Public License is specified in Section 6(a).\nMedia and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)\n\nnever produces Adapted Material.\n\nDownstream recipients.\n\nOffer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.\nNo downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.\n\nNo endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).\n\nOther rights.\n\nMoral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.\nPatent and trademark rights are not licensed under this Public License.\nTo the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.\n\n\nSection 3 – License Conditions.\nYour exercise of the Licensed Rights is expressly made subject to the following conditions.\n\nAttribution.\n\nIf You Share the Licensed Material (including in modified form), You must:\n\nretain the following if it is supplied by the Licensor with the Licensed Material:\n\nidentification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);\na copyright notice;\na notice that refers to this Public License;\na notice that refers to the disclaimer of warranties;\na URI or hyperlink to the Licensed Material to the extent reasonably practicable;\n\nindicate if You modified the Licensed Material and retain an indication of any previous modifications; and\nindicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.\n\nYou may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.\nIf requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.\nIf You Share Adapted Material You produce, the Adapter’s License You apply must not prevent recipients of the Adapted Material from complying with this Public License.\n\n\nSection 4 – Sui Generis Database Rights.\nWhere the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:\n\nfor the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;\nif You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material; and\nYou must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.\nSection 5 – Disclaimer of Warranties and Limitation of Liability.\n\nUNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION, WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.\nTO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES, COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.\nThe disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.\n\nSection 6 – Term and Termination.\n\nThis Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.\nWhere Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:\n\nautomatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or\nupon express reinstatement by the Licensor.\n\nFor the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.\nFor the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.\nSections 1, 5, 6, 7, and 8 survive termination of this Public License.\n\nSection 7 – Other Terms and Conditions.\n\nThe Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.\nAny arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.\n\nSection 8 – Interpretation.\n\nFor the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.\nTo the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.\nNo term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.\nNothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.\n\n=======================================================================\nCreative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” The text of the Creative Commons public licenses is dedicated to the public domain under the CC0 Public Domain Dedication. Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.\nCreative Commons may be contacted at creativecommons.org."
+  },
+  {
     "objectID": "blog/1_canada_camper.html",
     "href": "blog/1_canada_camper.html",
     "title": "Canada i camper",
@@ -231,38 +154,108 @@
     "text": "Kommentarer\nKortet er et lille forsøg på at binde forskelligt indhold sammen og visualisere det på en let tilgængelig og interaktiv måde."
   },
   {
-    "objectID": "blog/2_snart_klar.html",
-    "href": "blog/2_snart_klar.html",
-    "title": "Klar til afgang",
+    "objectID": "blog/3_checked_in.html",
+    "href": "blog/3_checked_in.html",
+    "title": "Først med tog og så med fly",
     "section": "",
-    "text": "Formiddagen har stået på pølsehornsbagning og tilretning af vores lidt rustikke havebord.\nEftermiddagen var bytur i Aarhus og aftensmad hos Faour i Klastergade. yndlingsstedet!\nHer er lidt billeder fra formoddagen.\n\n\n\n\nFigur 1: Sidste forberedelser"
+    "text": "Vi er godt med toget. Mange rejsende til koncert og alt muligt andet. Det er altid spændende med rejser, hvor alle de andre er på vej hen. Ved siden af skal de til Bruce Springsteen-koncert. Heller ikke tosset.\nI morgen skla vi være i lufthavnen lidt før kl 10. Lørdag er der dømt storbyfornemmelse med hotelovernatning downtown Vancouver og søndag er der afgang med camper. Se tidligere for rute. Det er sandelig mange nye oplevelser i udsigt på få dage. Anne er helt overvældet, men lægger sig heldigvis bare til at sove i toget. Ebba kan ikke sove men spiser pølsehorn. Eller det vil sige at hun spiser ketchup med pølsehornet. Det er en god ske.\nDe voksne er spændte og vi er endnu ikke kommet i tanker om noget vi har glemt.."
   },
   {
-    "objectID": "blog/2_snart_klar.html#snart-klar-til-afgang",
-    "href": "blog/2_snart_klar.html#snart-klar-til-afgang",
-    "title": "Klar til afgang",
+    "objectID": "blog/3_checked_in.html#først-med-tog-og-så-med-fly",
+    "href": "blog/3_checked_in.html#først-med-tog-og-så-med-fly",
+    "title": "Først med tog og så med fly",
     "section": "",
-    "text": "Formiddagen har stået på pølsehornsbagning og tilretning af vores lidt rustikke havebord.\nEftermiddagen var bytur i Aarhus og aftensmad hos Faour i Klastergade. yndlingsstedet!\nHer er lidt billeder fra formoddagen.\n\n\n\n\nFigur 1: Sidste forberedelser"
+    "text": "Vi er godt med toget. Mange rejsende til koncert og alt muligt andet. Det er altid spændende med rejser, hvor alle de andre er på vej hen. Ved siden af skal de til Bruce Springsteen-koncert. Heller ikke tosset.\nI morgen skla vi være i lufthavnen lidt før kl 10. Lørdag er der dømt storbyfornemmelse med hotelovernatning downtown Vancouver og søndag er der afgang med camper. Se tidligere for rute. Det er sandelig mange nye oplevelser i udsigt på få dage. Anne er helt overvældet, men lægger sig heldigvis bare til at sove i toget. Ebba kan ikke sove men spiser pølsehorn. Eller det vil sige at hun spiser ketchup med pølsehornet. Det er en god ske.\nDe voksne er spændte og vi er endnu ikke kommet i tanker om noget vi har glemt.."
   },
   {
-    "objectID": "food/hyldesaft.html",
-    "href": "food/hyldesaft.html",
-    "title": "Hyldesaft",
+    "objectID": "food/formbrød.html",
+    "href": "food/formbrød.html",
+    "title": "Familien G Damsbo",
     "section": "",
-    "text": "40-50 hyldekurve (stængler klippes evt af)\n3 kg sukker (evt heraf 500 g brun farin)\n4 l vand\n8-13 økologiske citroner i skiver, antal afhængigt af størrelse (kan blandes med ØKO appelsiner)"
+    "text": "Rest surdej (150 g) 7 dl vand 2 håndfulde havregryn 25 g salt 10 g gær 1 håndfuld hørfrø Mel\nBagt 35 min ved 200gr.\nLidt surt. Ok med mindre surdej, eller flere brød."
   },
   {
-    "objectID": "food/hyldesaft.html#hyldeblomstsaft",
-    "href": "food/hyldesaft.html#hyldeblomstsaft",
-    "title": "Hyldesaft",
+    "objectID": "food/formbrød.html#formbrød",
+    "href": "food/formbrød.html#formbrød",
+    "title": "Familien G Damsbo",
     "section": "",
-    "text": "40-50 hyldekurve (stængler klippes evt af)\n3 kg sukker (evt heraf 500 g brun farin)\n4 l vand\n8-13 økologiske citroner i skiver, antal afhængigt af størrelse (kan blandes med ØKO appelsiner)"
+    "text": "Rest surdej (150 g) 7 dl vand 2 håndfulde havregryn 25 g salt 10 g gær 1 håndfuld hørfrø Mel\nBagt 35 min ved 200gr.\nLidt surt. Ok med mindre surdej, eller flere brød."
   },
   {
-    "objectID": "food/hyldesaft.html#sådan-gør-du",
-    "href": "food/hyldesaft.html#sådan-gør-du",
-    "title": "Hyldesaft",
+    "objectID": "food/fladmast hane med nye hvidlog.html",
+    "href": "food/fladmast hane med nye hvidlog.html",
+    "title": "Familien G Damsbo",
+    "section": "",
+    "text": "fladmast hane med nye hvidlog\n\n\nFladmast hane med nye hvidlog\nFladmasning kræver ikke stor køkkensnilde. Det er en ret genial måde at stege kyllinger på, for man får sprødt skind over det hele. Samtidigt bliver den foldet på en måde, som forhindre brystkødet at blive tørt.\nTil 6 personer\nEn stor hane eller kylling 1 ½ kg. Kartofler 3 hele hvidløg 1 citron salt og peber olivenolie\nLæg hanen på et bræt med brystet nedad. Skær med en meget skarp og tung kniv langs rygbenet på begge sider og tag rygbenet væk - halsen følger med. Vend hanen om og tryk den flad. Skær kartoflerne i kvarter - gerne med skræl. Fjern de yderste seje hinder fra hvidløgene og skær dem i kvarter. Skræl den ene halvdel af citronen tyndt. Læg hvidløg og citronskal i en bradepande og læg den fladmaste hane ovenpå med skindsiden opad Arranger kartoflerne udenom, drys med salt og peber, og dryp med olivenolie. Hæld 3 dl. vand ved.\nBag ved 200° - til hanen er er mør og sprød - ca. 1 time.\nDer skal rumses lidt rundt i kartoflerne undervejs så de ikke branker.\nNår hanen tages ud af ovnen, presses citronen ud over kartoflerne.\nSpis hvidløgene som en creme til at smøre på kød og grønsager."
+  },
+  {
+    "objectID": "food/elses_vafler.html",
+    "href": "food/elses_vafler.html",
+    "title": "Elses vafler",
+    "section": "",
+    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
+  },
+  {
+    "objectID": "food/elses_vafler.html#noter",
+    "href": "food/elses_vafler.html#noter",
+    "title": "Elses vafler",
+    "section": "",
+    "text": "At tale om verdens bedste vafler er naturligvis lidt fjollet. Men denne opskrift er virkelig god.\nDerhjemme var det et sikkert tegn på forår, når Else fandt vaffeljernene frem ude på havebordet i drivhuset og inviterede nabolagets børn over.\nDer er ikke sparet på smøret, men sådan må det være. Vaflerne bliver super lækre og sprøde og er særdeles gode til flormelis og marmelade.\nGod fornøjelse!"
+  },
+  {
+    "objectID": "food/elses_vafler.html#ingredienser",
+    "href": "food/elses_vafler.html#ingredienser",
+    "title": "Elses vafler",
+    "section": "Ingredienser",
+    "text": "Ingredienser\n\n2,5 dl vand\n2 dl molk\n1/4 tsk salt\n3,5 dl (275 g) mel\n2 tsk bagpilver\n125 g smør"
+  },
+  {
+    "objectID": "food/elses_vafler.html#sådan-gør-du",
+    "href": "food/elses_vafler.html#sådan-gør-du",
+    "title": "Elses vafler",
     "section": "Sådan gør du",
-    "text": "Sådan gør du\nSukker opløses i kogende vand i en stor gryde (8-9 l). Hyld og citrusskiver tilsættes. Fylder ca. 8 l.\nStår 3 dage i køleskab eller køligt.\nFiltreres gennem dørslag, si og et klæde. Det sidste dog ikke strengt nødvendigt. Tilsættes evt 2 spsk atamon eller opbevares i fryser.\nGiver ca 6 l saft."
+    "text": "Sådan gør du\n\nBland mælk, vand og salt og bisk det i melet, der er blandet med bagepulver.\nTilsæt smeltet, afkølet smør lige inden bagning.\nBag og nyd."
+  },
+  {
+    "objectID": "food/elses_vafler.html#slutnote",
+    "href": "food/elses_vafler.html#slutnote",
+    "title": "Elses vafler",
+    "section": "Slutnote",
+    "text": "Slutnote\nDen oprindelige opskrift tilsiger at fedtstof blandes i lige inden bagning. Erfaringen siger dog at det sagtens kan gøres aftenen før, og så egner vaflerne sig temmelig godt til det store brunch-bord."
+  },
+  {
+    "objectID": "food/banankage.html",
+    "href": "food/banankage.html",
+    "title": "Super nem banankage",
+    "section": "",
+    "text": "Denne kage kan sagtens røres sammen med et par unger. Der er sjovt at mose bananer og røre i dej. Dejen smager også ubagt og er jo ikke så farlig. Det tager 15-20 minutter at røre det hele sammen og det passer til en klassisk rugbrødsform på ca 3 L. Kagen er særdeles velegnet til at lægge i fryseren."
+  },
+  {
+    "objectID": "food/banankage.html#noter",
+    "href": "food/banankage.html#noter",
+    "title": "Super nem banankage",
+    "section": "",
+    "text": "Denne kage kan sagtens røres sammen med et par unger. Der er sjovt at mose bananer og røre i dej. Dejen smager også ubagt og er jo ikke så farlig. Det tager 15-20 minutter at røre det hele sammen og det passer til en klassisk rugbrødsform på ca 3 L. Kagen er særdeles velegnet til at lægge i fryseren."
+  },
+  {
+    "objectID": "food/banankage.html#ingredienser",
+    "href": "food/banankage.html#ingredienser",
+    "title": "Super nem banankage",
+    "section": "Ingredienser",
+    "text": "Ingredienser\n\n3-5 godt modne bananer - moses\n200-250 ml. sukker\n2 æg - moses m. gaffel\n1 tsk. natron\n5 dl. mel\n2 dI. hakkede valnødder\n1½ dl. olie/margarine\n1 tsk. vanillesukker"
+  },
+  {
+    "objectID": "food/banankage.html#sådan-gør-du",
+    "href": "food/banankage.html#sådan-gør-du",
+    "title": "Super nem banankage",
+    "section": "Sådan gør du",
+    "text": "Sådan gør du\n\nStart med at tænde ovnen på 175 grader.\nVåde og tørre ingredienser blandes hver for sig.\nAlt blandes og røres godt sammen i en skål.\nFormen smøres og drysses med rasp el. mel. Alternativt beklædes den med bagepapir.\nDejen hældes i formen og bages ca. 45 min. Tjek med en strikkepind at kagen er gennembagt."
+  },
+  {
+    "objectID": "food.html",
+    "href": "food.html",
+    "title": "Opskrifter",
+    "section": "",
+    "text": "Vi er glade for at lave mad, og vi øver os i at have børnene med.\nHer deler vi nogle af vores yndlingsopskrifter. Så kan vi selv finde dem, og de kan deles.\nNogle opskrifter er originale, andre er meget inspireret og andre igen kopieret direkte fra andre sider. Vi refererer efter bedste evne.\n\n\n\n\n\n\n\n\n\n  \n\n\n\n\nHyldesaft\n\n\n\n\n\n\n\nSødt\n\n\nBørnene med!\n\n\n\n\nEn klassiker i juni.\n\n\n\n\n\n\n28. jun. 2023\n\n\nAndreas\n\n\n\n\n\n\n  \n\n\n\n\nSuper nem banankage\n\n\n\n\n\n\n\nKage\n\n\nBagværk\n\n\nBørnene med!\n\n\nDansk\n\n\n\n\nDer er aldrig nok banan i banankage. Sådan er det ikke her!\n\n\n\n\n\n\n28. apr. 2023\n\n\n\n\n\n\n  \n\n\n\n\nElses vafler\n\n\n\n\n\n\n\nKage\n\n\nForår\n\n\nBørnene med!\n\n\n\n\nVerdens bedste vafler. Punktum.\n\n\n\n\n\n\n5. mar. 2023\n\n\nAndreas\n\n\n\n\n\n\n  \n\n\n\n\nRugbrød\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nVores hverdagsrugbrød. Det er blevet en vane, så det virker!\n\n\n\n\n\n\n22. sep. 2022\n\n\n\n\n\n\n  \n\n\n\n\nSurdej\n\n\n\n\n\n\n\nBagværk\n\n\nBrød\n\n\n\n\nDet er ikke så svært endda.\n\n\n\n\n\n\n22. sep. 2022\n\n\n\n\n\n\nIngen resultater"
   }
 ]
