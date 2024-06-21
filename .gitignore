@@ -55,3 +55,7 @@ rsconnect/
 food/refs/
 
 osrm-backend/
+
+data-raw/
+
+R/

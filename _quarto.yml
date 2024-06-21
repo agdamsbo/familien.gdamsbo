@@ -16,8 +16,10 @@ website:
         text: Start
       - href: food.qmd
         text: Opskrifter
-      - href: blog.qmd
-        text: Blog
+      - href: https://ebba.gdamsbo.dk/
+        text: Ebbas side
+      # - href: blog.qmd
+      #   text: Blog
     right:
       - href: https://github.com/agdamsbo/familien.gdamsbo
         text: Kildekode
