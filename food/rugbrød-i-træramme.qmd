@@ -24,17 +24,17 @@ Tag din surdej ud og fodr den. [Se her for gode råd.](https://fam.gdamsbo.dk/fo
 
 ## Dag 2
 
--   175 g surdej (ca. 1½ dl)
--   30 g salt
--   1 liter koldt vand
--   400 g skårne rugkerner
--   600 g rugmel
+- [ ] 175 g surdej (ca. 1½ dl)
+- [ ] 30 g salt
+- [ ] 1 liter koldt vand
+- [ ] 400 g skårne rugkerner
+- [ ] 600 g rugmel
 
 Røres sammen i en stor skål (5 L). Tildækkes og står ved stuetemperatur i 12-24 timer.
 
--   300 g skårne rugkerner
--   50-100 g surdej (passer for det meste med resten)
--   Evt. ca 100 g mandler, hasselnødder, boghvede, amarant, chia, quinoa eller lignende.
+- [ ] 300 g skårne rugkerner
+- [ ] 50-100 g surdej (passer for det meste med resten)
+- [ ] Evt. ca 100 g mandler, hasselnødder, boghvede, amarant, chia, quinoa eller lignende.
 
 Sættes i blød med rigeligt vand 12-36 timer.
 
@@ -44,11 +44,11 @@ Dejen fra Dag 2 samt drænede, udblødte rugkerner (og nødder/frø) blandes.
 
 Desuden tilsættes følgende:
 
--   4 dl frø (fx sesam, solsikke- og græskarkerner i forholdet 1:2:1)
--   1 spsk honning (kan røres ud i øl)
--   1 øl (33 cl, gerne hvidtøl eller anden mørk øl, men det kommer sig ikke så nøje)
--   Ca 9 dl rugmel til rette konsistens.
--   Evt. 2 spsk mørk maltsirup (Giver mere smag og farve)
+- [ ] 4 dl frø (fx sesam, solsikke- og græskarkerner i forholdet 1:2:1)
+- [ ] 1 spsk honning (kan røres ud i øl)
+- [ ] 1 øl (33 cl, gerne hvidtøl eller anden mørk øl, men det kommer sig ikke så nøje)
+- [ ] Ca 9 dl rugmel til rette konsistens.
+- [ ] Evt. 2 spsk mørk maltsirup (Giver mere smag og farve)
 
 Det hele røres godt sammen. Det skal have en tyk, sej klistret konsistens og fordeles i 3 smør-smurte trærammer der rummer 2 liter. Glat dejen.
 
