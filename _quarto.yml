@@ -12,8 +12,8 @@ website:
   title: "Familien G Damsbo"
   favicon: logo.png
   navbar:
-    logo: logo.png
-    logo-href: https://fam.gdamsbo.dk
+    # logo: logo.png
+    # logo-href: https://fam.gdamsbo.dk
     left:
       - href: index.qmd
         text: Start
