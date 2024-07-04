@@ -10,7 +10,10 @@ resources:
 
 website:
   title: "Familien G Damsbo"
+  favicon: logo.png
   navbar:
+    logo: logo.png
+    logo-href: https://fam.gdamsbo.dk
     left:
       - href: index.qmd
         text: Start
@@ -43,6 +46,7 @@ format:
     link-external-newwindow: true
     link-external-icon: false
     include-in-header: umami.html
+    email-obfuscation: references
 
 editor: visual
 

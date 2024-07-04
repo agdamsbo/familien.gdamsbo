@@ -3,10 +3,15 @@ title: "Familien G Damsbo"
 lang: da
 about:
   template: jolla
+  image: logo.svg
+  links: 
+    - href: mailto:fam@gdamsbo.dk
+      text: Kontakt
+      icon: envelope
 ---
 
 Hej! Velkommen til vores familieside.
 
-Til en start er her bare lidt opskrifter og starten på en rejsedagbog.
+Til en start er her bare lidt yndlingsopskrifter og så skriver vi lidt om andet når det er relevant.
 
 Det hele er lavet i Quarto og R. Det er let tilgængeligt, frit og åbent.
